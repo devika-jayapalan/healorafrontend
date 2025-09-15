@@ -13,13 +13,9 @@ public class Main extends Application
     public void start(Stage stage) {
         this.primaryStage = stage;
         showLoginScreen();
-        stage.setTitle("Mood Tracker App");
+        stage.setTitle("Healora");
         stage.show();
     }
-
-    // -------------------
-    // Screen switching
-    // -------------------
 
     public void showLoginScreen() {
         LoginScreen login = new LoginScreen(this);
@@ -37,16 +33,15 @@ public class Main extends Application
         DashboardScreen dashboard = new DashboardScreen(primaryStage, this);
         dashboard.show();
     }
-    public void showMoodTrackerScreen() {
-    MoodTrackerScreen moodScreen = new MoodTrackerScreen(primaryStage, this);
-    moodScreen.show();
-}
+public void showMoodTrackerScreen() 
+{ MoodTrackerScreen moodScreen = new MoodTrackerScreen(primaryStage, this); moodScreen.show(); }
 
 
-    // -------------------
-    // Listener callbacks
-    // -------------------
 
+
+
+
+    // ✅ Callbacks
     @Override
     public void onLoginSuccess() {
         showDashboardScreen();
@@ -54,7 +49,6 @@ public class Main extends Application
 
     @Override
     public void onRegistrationSuccess() {
-        // After registration → go back to login
         showLoginScreen();
     }
 

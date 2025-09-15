@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.net.URL;
+
 public class DashboardScreen {
 
     private Stage stage;
@@ -38,10 +40,25 @@ public class DashboardScreen {
         root.setTop(topBox);
 
         // --- CENTER: Pet placeholder ---
-        Image petImage = new Image(getClass().getResource("/images/pet_placeholder.png").toExternalForm());
-        ImageView petView = new ImageView(petImage);
+        // Declare and initialize petView here (guaranteed initialization)
+        ImageView petView = new ImageView();
+
+        try {
+            URL imgUrl = getClass().getResource("/images/pet_placeholder.png");
+            if (imgUrl != null) {
+                Image petImage = new Image(imgUrl.toExternalForm());
+                petView.setImage(petImage);
+            } else {
+                System.out.println("⚠ pet_placeholder.png not found on classpath (/images/pet_placeholder.png)");
+            }
+        } catch (Exception e) {
+            System.out.println("⚠ Error loading pet image: " + e.getMessage());
+            // leave petView empty as fallback
+        }
+
         petView.setFitWidth(180);
         petView.setFitHeight(180);
+        petView.setPreserveRatio(true);
 
         // Scale animation on hover
         petView.setOnMouseEntered(e -> {
@@ -62,15 +79,17 @@ public class DashboardScreen {
         root.setCenter(centerBox);
 
         // --- BOTTOM: Buttons ---
-        Button logMoodBtn = new Button("Log Mood");
+        Button logMoodBtn = new Button("Open Mood Tracker");
         Button logoutBtn = new Button("Logout");
-        Button moodBtn = new Button("Open Mood Tracker");
-moodBtn.setOnAction(e -> main.showMoodTrackerScreen());
-centerBox.getChildren().add(moodBtn);
 
-
-        logMoodBtn.setOnAction(e -> main.showMoodTrackerScreen()); // go to Mood Tracker
-        logoutBtn.setOnAction(e -> main.showLoginScreen()); // go back to login
+        logMoodBtn.setOnAction(e -> main.showMoodTrackerScreen());
+        logoutBtn.setOnAction(e -> {
+            // reset current user if you added a setter
+            try {
+                main.getClass().getMethod("setCurrentUser", String.class).invoke(main, new Object[]{null});
+            } catch (Exception ignore) { /* optional: ignore if setter not present */ }
+            main.showLoginScreen();
+        });
 
         HBox bottomBox = new HBox(20, logMoodBtn, logoutBtn);
         bottomBox.setAlignment(Pos.CENTER);
@@ -79,7 +98,12 @@ centerBox.getChildren().add(moodBtn);
 
         // --- Scene ---
         Scene scene = new Scene(root, 800, 600);
-        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+        try {
+            URL cssUrl = getClass().getResource("/css/style.css");
+            if (cssUrl != null) scene.getStylesheets().add(cssUrl.toExternalForm());
+        } catch (Exception e) {
+            System.out.println("⚠ Stylesheet not found or failed to load.");
+        }
 
         // Fade in animation
         FadeTransition ft = new FadeTransition(Duration.seconds(1), root);
@@ -91,4 +115,3 @@ centerBox.getChildren().add(moodBtn);
         stage.show();
     }
 }
-
