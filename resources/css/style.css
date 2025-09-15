@@ -1,0 +1,60 @@
+/* Background for all screens */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #fdfbfb, #ebedee);
+}
+
+/* Title text */
+.text {
+    -fx-font-size: 20px;
+    -fx-font-family: "Segoe UI", "Comic Sans MS";
+    -fx-fill: #444;
+    -fx-font-weight: bold;
+}
+
+/* Card-style TextFields */
+.text-field, .password-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 8 12;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 12;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #a6c1ee;
+    -fx-border-width: 2;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #a6c1ee;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 15;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.15) , 4,0,0,2 );
+}
+
+.button:hover {
+    -fx-background-color: #89abe3;
+}
+
+/* Mood Buttons Different Colors */
+.button.happy {
+    -fx-background-color: #6ecf68;
+}
+.button.sad {
+    -fx-background-color: #6aa5e0;
+}
+.button.angry {
+    -fx-background-color: #e06a6a;
+}
+.button.relaxed {
+    -fx-background-color: #a4d4ae;
+}
+.button.excited {
+    -fx-background-color: #f7c56a;
+}
