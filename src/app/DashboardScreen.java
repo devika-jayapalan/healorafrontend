@@ -40,7 +40,6 @@ public class DashboardScreen {
         root.setTop(topBox);
 
         // --- CENTER: Pet placeholder ---
-        // Declare and initialize petView here (guaranteed initialization)
         ImageView petView = new ImageView();
 
         try {
@@ -53,14 +52,13 @@ public class DashboardScreen {
             }
         } catch (Exception e) {
             System.out.println("⚠ Error loading pet image: " + e.getMessage());
-            // leave petView empty as fallback
         }
 
         petView.setFitWidth(180);
         petView.setFitHeight(180);
         petView.setPreserveRatio(true);
 
-        // Scale animation on hover
+        // Hover animation
         petView.setOnMouseEntered(e -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(200), petView);
             st.setToX(1.1);
@@ -80,18 +78,20 @@ public class DashboardScreen {
 
         // --- BOTTOM: Buttons ---
         Button logMoodBtn = new Button("Open Mood Tracker");
+        Button petInteractionBtn = new Button("Pet Interaction"); // NEW button
         Button logoutBtn = new Button("Logout");
 
+        // Button actions
         logMoodBtn.setOnAction(e -> main.showMoodTrackerScreen());
+        petInteractionBtn.setOnAction(e -> main.showPetInteractionScreen()); // NEW screen navigation
         logoutBtn.setOnAction(e -> {
-            // reset current user if you added a setter
             try {
                 main.getClass().getMethod("setCurrentUser", String.class).invoke(main, new Object[]{null});
-            } catch (Exception ignore) { /* optional: ignore if setter not present */ }
+            } catch (Exception ignore) {}
             main.showLoginScreen();
         });
 
-        HBox bottomBox = new HBox(20, logMoodBtn, logoutBtn);
+        HBox bottomBox = new HBox(20, logMoodBtn, petInteractionBtn, logoutBtn);
         bottomBox.setAlignment(Pos.CENTER);
         bottomBox.setPadding(new Insets(15));
         root.setBottom(bottomBox);

@@ -1,48 +1,59 @@
 /* Background for all screens */
 .root {
     -fx-background-color: linear-gradient(to bottom, #fdfbfb, #ebedee);
-}
-
-/* Title text */
-.text {
-    -fx-font-size: 20px;
     -fx-font-family: "Segoe UI", "Comic Sans MS";
-    -fx-fill: #444;
-    -fx-font-weight: bold;
 }
 
-/* Card-style TextFields */
+/* Titles (Welcome, Healora, etc.) */
+.title-text {
+    -fx-font-size: 26px;
+    -fx-font-family: "Comic Sans MS", "Segoe UI";
+    -fx-fill: #5a4b81;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(90,75,129,0.3), 6, 0, 0, 2);
+}
+
+/* Subtitles (smaller headings) */
+.subtitle-text {
+    -fx-font-size: 18px;
+    -fx-fill: #555;
+    -fx-font-weight: semi-bold;
+}
+
+/* Input fields */
 .text-field, .password-field {
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 12;
-    -fx-padding: 8 12;
-    -fx-border-color: #dcdcdc;
-    -fx-border-radius: 12;
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 15;
+    -fx-padding: 10 14;
+    -fx-border-color: #c8d6e5;
+    -fx-border-radius: 15;
     -fx-font-size: 14px;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 2);
 }
 
 .text-field:focused, .password-field:focused {
-    -fx-border-color: #a6c1ee;
+    -fx-border-color: #89abe3;
     -fx-border-width: 2;
 }
 
-/* Buttons */
+/* Buttons - general */
 .button {
-    -fx-background-color: #a6c1ee;
+    -fx-background-color: linear-gradient(to right, #a6c1ee, #89abe3);
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-background-radius: 15;
-    -fx-padding: 8 16;
+    -fx-background-radius: 20;
+    -fx-padding: 10 18;
     -fx-cursor: hand;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.15) , 4,0,0,2 );
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.15) , 6,0,0,3 );
+    -fx-transition: all 0.3s ease-in-out;
 }
 
 .button:hover {
-    -fx-background-color: #89abe3;
+    -fx-background-color: linear-gradient(to right, #89abe3, #7c9dd4);
 }
 
-/* Mood Buttons Different Colors */
+/* Mood-specific buttons */
 .button.happy {
     -fx-background-color: #6ecf68;
 }
@@ -57,4 +68,25 @@
 }
 .button.excited {
     -fx-background-color: #f7c56a;
+}
+
+/* Glass-style panels (for login form card look) */
+.card {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-background-radius: 20;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 0, 6);
+}
+
+/* Progress bars (for pet interaction screen) */
+.progress-bar {
+    -fx-accent: #89abe3;
+    -fx-control-inner-background: #f0f0f0;
+    -fx-background-radius: 10;
+}
+
+/* Pet area image styling */
+.pet-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0, 0, 4);
+    -fx-background-radius: 50%;
 }
